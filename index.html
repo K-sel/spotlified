@@ -17,14 +17,6 @@
 
   <link rel="manifest" href="./manifest.webmanifest" />
 
-  <script>
-    window.OneSignalDeferred = window.OneSignalDeferred || [];
-    OneSignalDeferred.push(async function (OneSignal) {
-      await OneSignal.init({
-        appId: "2a7bf6ab-b35e-4000-abdc-fa0b2a48e90a",
-      });
-    });
-  </script>
   <!-- Javascript principal -->
   <!-- ...à quoi sert le defer ? :) -->
   <script src="/src/index.js" type="module" defer></script>
