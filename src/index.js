@@ -63,4 +63,3 @@ window.addEventListener("hashchange", router);
 
 // Appelé une fois dans le vide, pour mettre à jour l'état de l'app selon l'url demandée au chargement de la page
 router();
-navigator.serviceWorker.register("/service-workers.js")
