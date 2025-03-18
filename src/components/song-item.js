@@ -4,7 +4,7 @@ const favoriteClick = new CustomEvent("favorite_click");
 class SongItem extends HTMLElement {
   // Définit la liste des attributs qui seront observés et donc appelerons attributeChangedCallback
   // lorsqu'il y a une modification
-  static observedAttributes = ["favorite"];
+  static observedAttributes = ["favorite", "id"];
 
   // Appelé lorsque que l'on insert l'élément dans le DOM, typiquement au moment de:
   // songList.appendChild(newElement)
@@ -26,7 +26,7 @@ class SongItem extends HTMLElement {
     const icon = this.hasAttribute("favorite") ? "favorite" : "favorite_border";
 
     // On agglomère le HTML
-    this.innerHTML = `<a href="#">
+    this.innerHTML = `<a href="#lyrics-${this.getAttribute("id")}">
       <div class="list-item-title">${this.getAttribute("title")}</div>
       <div class="list-item-actions">
         <button type="button" class="icon-button favorite-button ">

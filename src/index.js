@@ -11,13 +11,16 @@ import { displayArtists } from "./controllers/artists.js";
 import {
   displayArtistSongs,
   displayFavorites,
+  displayLyrics,
   displaySearchSongs,
 } from "./controllers/songs.js";
 
-
-
-window.addEventListener('offline',() => {document.querySelector("body").classList.add("offline")})
-window.addEventListener('online', () => {document.querySelector("body").classList.remove("offline")})
+window.addEventListener("offline", () => {
+  document.querySelector("body").classList.add("offline");
+});
+window.addEventListener("online", () => {
+  document.querySelector("body").classList.remove("offline");
+});
 
 const router = () => {
   const hash = window.location.hash || "#home";
@@ -56,6 +59,11 @@ const router = () => {
       displaySection("#list");
       displayFavorites();
       break;
+
+    case "#lyrics":
+      displaySection("#lyrics");
+      displayLyrics(hashSplit[1]);
+    break;
   }
 };
 

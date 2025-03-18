@@ -1,4 +1,4 @@
-import { loadSongs, loadSearch } from "../utils/api.js";
+import { loadSongs, loadSearch, loadLyrics } from "../utils/api.js";
 import { setFavorite, getItems, getItem } from "../utils/local-storage.js";
 import playSong from "./player.js";
 
@@ -19,6 +19,7 @@ const displaySongArray = (songs) => {
     // Créer l'élément
     const songItem = document.createElement("song-item");
     songItem.setAttribute("title", song.title);
+    songItem.setAttribute("id", song.id)
 
     if (getItem(song.id)) {
       songItem.toggleAttribute("favorite");
@@ -72,4 +73,15 @@ const displayFavorites = () => {
   displaySongArray(getItems());
 };
 
-export { displayArtistSongs, displaySearchSongs, displayFavorites };
+const displayLyrics = async (id) => {
+  const song = await loadLyrics(id);
+  const songTitle = document.querySelector("#lyrics-section > h4");
+  const artistName = document.querySelector("#lyrics-section > h5");
+  const lyricsParagraph = document.querySelector("#lyrics-section > p");
+
+  lyricsParagraph.insertAdjacentText("afterbegin", song.lyrics);
+  songTitle.textContent = song.title;
+  artistName.textContent = song.artist.name;
+};
+
+export { displayArtistSongs, displaySearchSongs, displayFavorites, displayLyrics };
